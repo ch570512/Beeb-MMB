@@ -120,11 +120,11 @@ int main(int argc, char* argv[])
 				}
 				if (directory[i][15] == 0x00 || directory[i][15] == 0x0F)
 				{
-					while (file_exist((filePath + diskName[i] + ".dsk").c_str()))
+					while (file_exist((filePath + diskName[i] + ".SSD").c_str()))
 					{
 						diskName[i] += "I";
 					}
-					diskName[i] += ".dsk";
+					diskName[i] += ".SSD";
 					cout << "Writing disk '" << diskName[i] << "'" << endl;
 					ofstream ofs((filePath + diskName[i]).c_str(), ios::binary);
 					for (int j = 0x000000; j <= 0x031FFF; j++)
@@ -150,7 +150,7 @@ int main(int argc, char* argv[])
 		// Merge disks into MMB
 		//-----------------------------------------------------------------------------------------------------------------------
 
-		if ((fileName.substr(fileName.find_last_of(".")) == ".DSK") || (fileName.substr(fileName.find_last_of(".")) == ".dsk"))
+		if ((fileName.substr(fileName.find_last_of(".")) == ".SSD") || (fileName.substr(fileName.find_last_of(".")) == ".ssd"))
 		{
 			string diskName[511] = {};
 			uint8_t *diskImage[511] = {};
@@ -255,7 +255,7 @@ int main(int argc, char* argv[])
 
 		//-----------------------------------------------------------------------------------------------------------------------
 
-		cout << "Sorry but this dosn't seem to be an .MMB or .dsk file." << endl;
+		cout << "Sorry but this dosn't seem to be an .MMB or .SSD file." << endl;
 		hitKey();
 		return -1;
 	}
