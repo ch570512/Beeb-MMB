@@ -198,7 +198,7 @@ int main(int argc, char* argv[])
 						{
 							ofs.put(0x00);
 						};
-						j = 11;
+						break;
 					}
 					else
 					{
