@@ -75,7 +75,6 @@ int main(int argc, char* argv[])
 			for (uint8_t i = 0x00; i <= 0x0F; i++)
 			{
 				header[i] = ifs.get();
-				//cout << hex(header[i], 2) << " ";
 			}
 
 			// Check for MMB
