@@ -17,7 +17,7 @@
 //
 // ******************************************************************************
 
-#define APP_VERSION 20210317
+#define APP_VERSION 20210319
 
 #include <fstream>
 #include <iostream>
@@ -44,11 +44,11 @@ int main(int argc, char* argv[])
 	cout << "(c) 2021 Thorsten M. Wahl" << endl << endl;
 
 	//argc = 2;
-	//argv[1] = (char*)"C:\\Users\\twahl\\Desktop\\BEEB\\BEEB.MMB";
+	//argv[1] = (char*)"D:\\OneDrive\\Dev_Software\\Visual_Studio\\Beeb-MMB\\BEEB\\BEEB.MMB";
 
 	//argc = 3;
-	//argv[1] = (char*)"C:\\Users\\twahl\\Desktop\\BEEB\\BAD APPLE.dsk";
-	//argv[2] = (char*)"C:\\Users\\twahl\\Desktop\\BEEB\\EMPTY.dsk";
+	//argv[1] = (char*)"D:\\OneDrive\\Dev_Software\\Visual_Studio\\Beeb-MMB\\BEEB\\BAD APPLE.SSD";
+	//argv[2] = (char*)"D:\\OneDrive\\Dev_Software\\Visual_Studio\\Beeb-MMB\\BEEB\\EMPTY.SSD";
 
 	if (argc > 1)
 	{
@@ -75,6 +75,7 @@ int main(int argc, char* argv[])
 			for (uint8_t i = 0x00; i <= 0x0F; i++)
 			{
 				header[i] = ifs.get();
+				//cout << hex(header[i], 2) << " ";
 			}
 
 			// Check for MMB
@@ -108,7 +109,7 @@ int main(int argc, char* argv[])
 			}
 
 			// Read all disks, write only valid disks (511 * 200 kBytes)
-			uint8_t *diskImage = new uint8_t[0x032000];
+			uint8_t* diskImage = new uint8_t[0x032000];
 			uint16_t counter = 0;
 
 			for (uint16_t i = 0; i <= 510; i++)
@@ -151,8 +152,16 @@ int main(int argc, char* argv[])
 
 		if ((fileName.substr(fileName.find_last_of(".")) == ".SSD") || (fileName.substr(fileName.find_last_of(".")) == ".ssd"))
 		{
+
+			if (argc > 512)
+			{
+				cout << "Sorry but only 511 disks fit into one BEEB.MMB image." << endl;
+				hitKey();
+				return -1;
+			}
+
 			string diskName[511] = {};
-			uint8_t *diskImage[511] = {};
+			uint8_t* diskImage[511] = {};
 
 			// Read independent disks into memory
 			for (uint16_t i = 0; i <= argc - 2; i++)

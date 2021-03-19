@@ -17,5 +17,8 @@ FOR A PARTICULAR PURPOSE.
 Changelog:
 ******************************************************************************
 
+20210319:
+Check for more than 511 disks.
+
 20210317:
 Initial release.
