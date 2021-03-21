@@ -17,6 +17,9 @@ FOR A PARTICULAR PURPOSE.
 Changelog:
 ******************************************************************************
 
+20210320:
+delete [].
+
 20210319:
 Check for more than 511 disks.
 

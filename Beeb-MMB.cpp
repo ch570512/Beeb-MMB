@@ -17,7 +17,7 @@
 //
 // ******************************************************************************
 
-#define APP_VERSION 20210319
+#define APP_VERSION 20210320
 
 #include <fstream>
 #include <iostream>
@@ -75,7 +75,6 @@ int main(int argc, char* argv[])
 			for (uint8_t i = 0x00; i <= 0x0F; i++)
 			{
 				header[i] = ifs.get();
-				//cout << hex(header[i], 2) << " ";
 			}
 
 			// Check for MMB
@@ -137,7 +136,7 @@ int main(int argc, char* argv[])
 			}
 
 			// Close input BEEB.MMB
-			delete diskImage;
+			delete [] diskImage;
 			ifs.close();
 
 			cout << endl;
@@ -238,7 +237,7 @@ int main(int argc, char* argv[])
 				{
 					ofs.put(diskImage[i][j]);
 				}
-				delete diskImage[i];
+				delete [] diskImage[i];
 			}
 
 			// Fill rest with unformated disk images
